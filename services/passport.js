@@ -27,7 +27,9 @@ passport.use(new GoogleStrategy(
             if(retrivedUser){
                 done(null, retrivedUser);
             } else{
-                new User({ googleId: profile.id, email: profile._json.email }).save().then( user => {
+                var d = Date(Date.now()); 
+                date = d.toString();
+                new User({ googleId: profile.id, email: profile._json.email, date: date}).save().then( user => {
                     done(null, user);
                 });
             }

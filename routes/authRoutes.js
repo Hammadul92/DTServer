@@ -24,12 +24,13 @@ module.exports = (app) => {
     
     app.get('/auth/google/callback', passport.authenticate('google'));
 
-    app.get('/api/logout', (req, res) => {
+    app.get('/api/logout',  (req, res) => {
         req.logout();
         res.send(req.user);
     });
 
     app.get('/api/current-user', (req, res )=>{
+        console.log(req.user)
         res.send(req.user)
     });
 
@@ -46,7 +47,9 @@ module.exports = (app) => {
                     res.send({message: "User Already Exists! Login or choose another user id"});
                 }else{
                     hashPassword(password).then(hash => {
-                        new User({ email: email, passwordHash: hash }).save().then( user => {
+                        var d = Date(Date.now()); 
+                        date = d.toString();
+                        new User({ email: email, passwordHash: hash, date: date}).save().then( user => {
                             res.status("200")
                             res.send({message: "Your Account has been successfully created."});
                         });

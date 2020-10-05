@@ -1,0 +1,108 @@
+
+  .auth-form .form-control{
+    font-size: 14px;
+    height: 45px;
+    border-radius: 0;
+  }
+
+  .auth-form .form-control:disabled{
+    background-color: #eee !important;
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  
+  
+  .auth-form .form-control:focus,
+  .auth-form .form-control:hover,
+  .auth-form .form-control:focus,
+  .auth-form .form-control:hover{
+      border-color: #3399ff;
+      box-shadow: none;
+  }
+
+  .auth-form .form-group{
+    position: relative;
+    margin-top: 35px;
+  }
+
+  .auth-form .form-group .form-control{
+    position: relative;
+    z-index: 2;
+    background: transparent;
+  }
+
+  .auth-form .form-group label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    transition: all 0.3s ease-in-out;
+    z-index: 1;
+    color: #999;
+    font-size: 15px;
+  }
+
+
+  .auth-form .form-group .form-control:focus + label {
+    top: -15px;
+    font-size: 13px;
+    color: #3399ff;
+    left: 0;
+    font-weight: 900;
+  }
+
+  .auth-form .form-group.clearfix{
+    height: 35px;
+  }
+
+  .auth-form .form-group.clearfix span{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+
+ 
+  
+  .google-button {
+    height: 45px;
+    border-width: 0;
+    background: white;
+    border-radius: 5px;
+    white-space: nowrap;
+    box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.05);
+    transition-property: background-color, box-shadow;
+    transition-duration: 150ms;
+    transition-timing-function: ease-in-out;
+    border: 1px solid #eee;
+    width: 100%;
+  }
+  
+  .google-button:focus, .google-button:hover {
+    box-shadow: 1px 4px 5px 1px rgba(0,0,0,0.1);
+  }
+  
+  .google-button:active {
+    background-color: #e5e5e5;
+    box-shadow: none;
+    transition-duration: 10ms;
+  }
+
+    
+  .google-button__icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 5px;
+    width: 22px;
+    height: 22px;
+    box-sizing: border-box;
+  }
+
+  .google-button__text {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 24px;
+    font-size: 16px;
+    font-weight: bold;
+  }

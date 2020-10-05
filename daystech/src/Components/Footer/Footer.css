@@ -1,0 +1,52 @@
+.footer ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer ul li{
+    margin-bottom: 8px;
+    color: #181818; 
+    font-size: 13px;
+}
+
+.footer ul li a{
+    color: #181818;   
+    text-decoration: none;
+    transition: all 500ms ease-in-out;
+}
+
+.footer ul li a:hover{
+    color: #3399ff;
+}
+
+.footer{
+    padding-top: 60px;
+    padding-bottom: 60px
+}
+
+.footer h5{
+    color: #181818;
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.footer input{
+    border-radius: 0;
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 32px;
+    margin-top: 15px;
+    padding: 10px;
+    transition: all .25s ease-in-out;
+    margin-bottom: 15px;
+}
+
+.footer .btn{
+    width: 100%;
+}
+
+.footer input:focus{
+    border: 1px solid #444;
+}
