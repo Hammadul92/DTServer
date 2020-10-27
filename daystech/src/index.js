@@ -42,7 +42,7 @@ store.subscribe(()=> saveToLocalStorage(store.getState()));
 const app = (
     <Provider store={store}>
         <BrowserRouter>
-            <GoogleReCaptchaProvider reCaptchaKey="6LfkeaMZAAAAALgrg6TvpvU60Hp572f8rp6-5862" >
+            <GoogleReCaptchaProvider reCaptchaKey="6LcVgdQZAAAAAJabEVwpyjWFCnS89UOWEF1PQ-D2" >
                <Routes />
             </GoogleReCaptchaProvider>
         </BrowserRouter>

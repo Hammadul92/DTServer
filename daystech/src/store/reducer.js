@@ -1,6 +1,15 @@
 import { combineReducers } from 'redux';
 
-
+const user = (state = null, action) => {
+  switch (action.type) {
+    case "FETCH_USER":
+      return action.payload || false;
+    case "LOGOUT_USER":
+      return null;
+    default:
+      return state;
+  }
+}
 
 const INITIAL_USER_STATE = {
   isSignedIn: false,
@@ -150,8 +159,7 @@ const userData = (state=INITIAL_USER_STATE, action) => {
       return {...state, cadExcel: action.payload.cadExcel}
     case 'FETCH_USERS':
       return {...state, users: action.payload.users}
-    case 'FETCH_USER':
-      return {...state, user: action.payload.user}
+
     case 'FETCH_ALL_PRODUCTS':
       return {...state, allProducts: action.payload.allProducts}
     case 'CREATE_USER_ERROR_MESSAGE':
@@ -238,6 +246,6 @@ const userData = (state=INITIAL_USER_STATE, action) => {
 
 
 export default combineReducers({
-  user: userData,
+  user: user,
   // newProject: fetchNewProject
 })

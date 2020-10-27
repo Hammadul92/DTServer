@@ -39,11 +39,12 @@
     transition: all 0.3s ease-in-out;
     z-index: 1;
     color: #999;
-    font-size: 15px;
+    font-size: 14px;
   }
 
 
-  .auth-form .form-group .form-control:focus + label {
+  .auth-form .form-group .form-control:focus + label,
+  .auth-form .form-group .form-control.filled + label {
     top: -15px;
     font-size: 13px;
     color: #3399ff;
@@ -63,7 +64,6 @@
   }
 
 
- 
   
   .google-button {
     height: 45px;

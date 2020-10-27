@@ -1,27 +1,45 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {logoutUser} from './../../store/actions';
 
 import {Link, NavLink} from 'react-router-dom';
 import "./NavBar.css";
+
+import  Auxilary from './../../hoc/Auxilary/Auxilary';
 
 
 class Navbar extends React.Component {
 
   state = {
     navCollapsed: true,
-    username: null,
+    user: null,
   }
 
   componentDidMount(){
-    this.setState({username: this.props.user.username})
+    this.setState({user: this.props.user})
+  }
+
+  componentDidUpdate(prevProps){
+    if(this.props.user !== this.state.user ){
+      if(this.props.user){
+        if(!this.props.user.error){
+          this.setState({user: this.props.user});
+        }
+      }
+    }
   }
 
   _onToggleNav = () => {
     this.setState({ navCollapsed: !this.state.navCollapsed })
   }
 
+  logout = () => {
+    this.props.logoutUser();
+  }
+
 
   render(){
+    console.log(this.props.user)
     const {navCollapsed} = this.state  
     return(
       <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -41,20 +59,10 @@ class Navbar extends React.Component {
           <div className={(navCollapsed ? 'collapse' : '') + ' navbar-collapse'}>
             <ul className="mr-auto navbar-nav">
               <li className="nav-item">
-                <NavLink to="/services" className="main" activeClassName="active">Services</NavLink>
-                <div className="dropdown-menu">
-                  <Link className="dropdown-item" to="/about-us/our-team">Web Application Development</Link>
-                  <Link className="dropdown-item" to="/about-us/our-team">Mobile Application Development</Link>
-                  <Link className="dropdown-item" to="/about-us/contact">SEO Optimization</Link>
-                </div>      
+                <NavLink to="/services" className="main" activeClassName="active">Services</NavLink>     
               </li>
               <li className="nav-item">
-                <NavLink to="/products" className="main" activeclassname="active">Products</NavLink>
-                <div className="dropdown-menu">
-                  <Link className="dropdown-item" to="/about-us/our-team">Product A</Link>
-                  <Link className="dropdown-item" to="/about-us/our-team">Product B</Link>
-                  <Link className="dropdown-item" to="/about-us/contact">Product C</Link>
-                </div>   
+                <NavLink to="/products" className="main" activeclassname="active">Products</NavLink>   
               </li>
               <li className="nav-item">
                 <NavLink to="/pricing" className="main" activeClassName="active">Pricing</NavLink>
@@ -62,20 +70,29 @@ class Navbar extends React.Component {
               
               <li className="nav-item">
                 <NavLink to="/about-us" className="main" activeClassName="active">About</NavLink>
-                <div className="dropdown-menu">
-                  <Link className="dropdown-item" to="/about-us/our-team">About</Link>
-                  <Link className="dropdown-item" to="/about-us/our-team">Our Team</Link>
-                  <Link className="dropdown-item" to="/about-us/contact">Contact</Link>
-                </div>
               </li>
             </ul>
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to="/signup">Sign up</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/signin">Sign in</Link>
-              </li>
+              {(!this.state.user)?
+                <Auxilary>
+                  <li className="nav-item">
+                    <Link to="/signup">Sign up</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/signin">Sign in</Link>
+                  </li>
+                </Auxilary>
+                :
+                <li className="nav-item">
+                  <NavLink to="/account" className="main" activeClassName="active"> Welcome, {this.state.user.email} </NavLink>
+                  <div className="dropdown-menu">
+                    <Link className="dropdown-item" to="/account">Account</Link>
+                    <Link className="dropdown-item" to="/billing"> Billing </Link>
+                    <Link className="dropdown-item" to="#" onClick={this.logout}> Logout </Link>
+                  </div>
+                </li>
+              }
+              
               <li className="nav-item">
                   <i className="fab fa-linkedin-in"></i>
               </li>
@@ -85,9 +102,6 @@ class Navbar extends React.Component {
               <li className="nav-item">
                 <i className="fab fa-instagram"></i>
               </li>
-              {/* <li className="nav-item">
-                <Link to="/account"><img src="/user-avatar.png" alt="User avatar" width="22"/> Welcome, {this.state.username} </Link>
-              </li> */}
             </ul>
           </div>
         </div>
@@ -102,5 +116,5 @@ const mapStateToProps = (state) => {
   return { user: state.user }
 }
 
-export default connect(mapStateToProps, {})(Navbar);
+export default connect(mapStateToProps, {logoutUser})(Navbar);
 

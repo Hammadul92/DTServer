@@ -1,10 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import {connect} from 'react-redux';
-import {fetchUser} from './../store/actions';
-
-import {Route,Switch} from 'react-router-dom';
+import {Route, BrowserRouter} from 'react-router-dom';
 import Auxilary from '../hoc/Auxilary/Auxilary.js'
 import Navbar from './Navbar/Navbar.js';
 import Footer from './Footer/Footer.js';
@@ -17,22 +14,19 @@ import Home from './Pages/Home.js';
 
 
 class App extends React.Component{
-
-  componentDidMount(){
-    this.props.fetchUser()
-  }
+ 
   
   render(){
     return(
       <Auxilary>
-        <Navbar />
-        <Switch>
+        <BrowserRouter>
+              <Navbar />
               <Route path='/' exact render={(props) => <Home {...props} />} />
               <Route path='/signin' exact component={Signin}/>
               <Route path='/signup' exact component={Signup}/>
               <Route path='/services' exact component={Services}/>
               <Route path='/pricing' exact component={Pricing}/>
-        </Switch>
+        </BrowserRouter>
         <Footer />
       </Auxilary>
     );
@@ -41,11 +35,4 @@ class App extends React.Component{
 };
 
 
-
-const mapStateToProps = state => {
-	return{
-    user: state.user
-	}
-};
-
-export default connect(mapStateToProps, {fetchUser})(App);
+export default App;
